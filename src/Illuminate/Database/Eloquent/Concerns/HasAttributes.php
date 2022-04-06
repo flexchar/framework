@@ -1183,6 +1183,12 @@ trait HasAttributes
      */
     public function fromJson($value, $asObject = false)
     {
+         if (is_array($value)) {
+            return $asObject 
+                ? json_decode(json_encode($value)) 
+                : $value;
+        }
+        
         return json_decode($value, ! $asObject);
     }
 
